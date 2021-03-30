@@ -4,7 +4,18 @@ import com.vcola.leetcode.common.ListNode;
 
 public class RemoveNthNodeFromEndOfList_19 {
 
+
   public ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode dummyNode = new ListNode(0);
+    dummyNode.next = head;
+    //
+
+    //
+
+    return null;
+  }
+
+  public ListNode removeNthFromEndV1(ListNode head, int n) {
     if (head == null) {
       return null;
     }
