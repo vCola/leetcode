@@ -2,13 +2,24 @@ package com.vcola.leetcode.puzzle;
 
 /**
  * 67. 二进制求和
- *
- * @author Very Cola
- * @date 2018年5月31日 上午9:15:10
  */
 public class AddBinary_67 {
 
   public String addBinary(String a, String b) {
+    StringBuilder result = new StringBuilder();
+    int temp = 0;
+    for (int i = a.length() - 1, j = b.length() - 1; i >= 0 || j >= 0; i--, j--) {
+      int sum = temp;
+      sum += i >= 0 ? a.charAt(i) - '0' : 0;
+      sum += j >= 0 ? b.charAt(j) - '0' : 0;
+      result.append(sum % 2);
+      temp = sum / 2;
+    }
+    result.append(temp == 1 ? temp : "");
+    return result.reverse().toString();
+  }
+
+  public String addBinaryV1(String a, String b) {
     StringBuilder sb = new StringBuilder();
     int indexA = a.length() - 1;
     int indexB = b.length() - 1;
