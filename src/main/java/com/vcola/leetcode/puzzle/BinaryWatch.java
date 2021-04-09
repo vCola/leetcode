@@ -78,7 +78,6 @@ public class BinaryWatch {
   public static void main(String[] args) {
     BinaryWatch binaryWatch = new BinaryWatch();
     System.out.println(binaryWatch.readBinaryWatch(1));
-
   }
 
 }

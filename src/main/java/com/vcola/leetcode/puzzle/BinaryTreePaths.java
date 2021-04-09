@@ -37,7 +37,7 @@ public class BinaryTreePaths {
   }
 
   public static void main(String[] args) {
-    TreeNode root = TreeNode.valueOf(new Integer[] { 1, 2, 3, null, 5 });
+    TreeNode root = TreeNode.valueOf(1, 2, 3, null, 5);
     BinaryTreePaths binaryTreePaths = new BinaryTreePaths();
     System.out.println(binaryTreePaths.binaryTreePaths(root));
   }

@@ -6,14 +6,20 @@ public class RemoveNthNodeFromEndOfList_19 {
 
 
   public ListNode removeNthFromEnd(ListNode head, int n) {
-    ListNode dummyNode = new ListNode(0);
-    dummyNode.next = head;
-    //
-
-
-    //
-
-    return null;
+    ListNode slowNode = head;
+    ListNode fastNode = head;
+    while (n-- > 0) {
+      fastNode = fastNode.next;
+    }
+    if (fastNode == null) {
+      return slowNode.next;
+    }
+    while (fastNode.next != null) {
+      slowNode = slowNode.next;
+      fastNode = fastNode.next;
+    }
+    slowNode.next = slowNode.next.next;
+    return head;
   }
 
   public ListNode removeNthFromEndV1(ListNode head, int n) {
@@ -48,7 +54,7 @@ public class RemoveNthNodeFromEndOfList_19 {
   public static void main(String[] args) {
     ListNode head = ListNode.of(1, 2, 3, 4, 5);
     System.out.println(head);
-    head = new RemoveNthNodeFromEndOfList_19().removeNthFromEnd(head, 5);
+    head = new RemoveNthNodeFromEndOfList_19().removeNthFromEnd(head, 1);
     System.out.println(head);
   }
 }

@@ -130,7 +130,7 @@ public class TreeNode {
     return root;
   }
 
-  public static TreeNode valueOf(Integer[] vals) {
+  public static TreeNode valueOf(Integer... vals) {
     if (vals == null || vals.length == 0) {
       return null;
     }
@@ -148,8 +148,7 @@ public class TreeNode {
   }
 
   public static void main(String[] args) {
-    TreeNode treeNode = valueOf(
-        new Integer[] { 1, 3, 5, null, 8, null, null, null, null, 9, null, null, null, null, null });
+    TreeNode treeNode = valueOf(1, 3, 5, null, 8, null, null, null, null, 9, null, null, null, null, null);
     System.out.println(depth(treeNode));
     Integer[] vals = toArray(treeNode);
     System.out.println(Arrays.toString(vals));
