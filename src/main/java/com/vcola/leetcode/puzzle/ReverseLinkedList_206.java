@@ -32,11 +32,7 @@ public class ReverseLinkedList_206 {
     ListNode pre = null;
     while (current != null) {
       next = current.next;
-      if (pre != null) {
-        current.next = pre;
-      } else {
-        current.next = null;
-      }
+      current.next = pre;
       pre = current;
       current = next;
     }
