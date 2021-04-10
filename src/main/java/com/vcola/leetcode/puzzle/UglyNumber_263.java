@@ -6,9 +6,22 @@ package com.vcola.leetcode.puzzle;
  * @author Very Cola
  * @date 2018年9月11日 上午9:23:34
  */
-public class UglyNumber {
+public class UglyNumber_263 {
 
-  public boolean isUgly(int num) {
+  public boolean isUgly(int n) {
+    if (n <= 0) {
+      return false;
+    }
+    int[] factors = { 2, 3, 5 };
+    for (int factor : factors) {
+      while (n % factor == 0) {
+        n /= factor;
+      }
+    }
+    return n == 1;
+  }
+
+  public boolean isUglyV1(int num) {
     if (num == 0) {
       return false;
     }
@@ -29,7 +42,7 @@ public class UglyNumber {
   }
 
   public static void main(String[] args) {
-    UglyNumber uglyNumber = new UglyNumber();
+    UglyNumber_263 uglyNumber = new UglyNumber_263();
     long startTime = System.currentTimeMillis();
     for (int i = 0; i <= 1000000; i++) {
       if (uglyNumber.isUgly(i)) {

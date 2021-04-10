@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import com.vcola.leetcode.common.TreeNode;
 
@@ -13,7 +14,7 @@ import com.vcola.leetcode.common.TreeNode;
  * @author Very Cola
  * @date 2018年6月13日 上午10:15:53
  */
-public class BinaryTreeLevelOrderTraversal2 {
+public class BinaryTreeLevelOrderTraversal2_107 {
 
   /**
    * 3
@@ -29,6 +30,31 @@ public class BinaryTreeLevelOrderTraversal2 {
    * ]
    */
   public List<List<Integer>> levelOrderBottom(TreeNode root) {
+    LinkedList<List<Integer>> resultList = new LinkedList<>();
+    if (root == null) {
+      return resultList;
+    }
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(root);
+    while (!queue.isEmpty()) {
+      int size = queue.size();
+      List<Integer> levelList = new ArrayList<>(size);
+      while (size-- > 0) {
+        TreeNode treeNode = queue.poll();
+        levelList.add(treeNode.val);
+        if (treeNode.left != null) {
+          queue.add(treeNode.left);
+        }
+        if (treeNode.right != null) {
+          queue.add(treeNode.right);
+        }
+      }
+      resultList.addFirst(levelList);
+    }
+    return resultList;
+  }
+
+  public List<List<Integer>> levelOrderBottomV1(TreeNode root) {
     List<List<Integer>> result = new ArrayList<>();
     if (root == null) {
       return result;
@@ -64,22 +90,9 @@ public class BinaryTreeLevelOrderTraversal2 {
   }
 
   public static void main(String[] args) {
-    TreeNode root = new TreeNode(3);
-    TreeNode left01 = new TreeNode(9);
-    TreeNode right01 = new TreeNode(20);
-
-    TreeNode left02 = new TreeNode(15);
-    TreeNode right02 = new TreeNode(7);
-
-    root.left = left01;
-    root.right = right01;
-
-    right01.left = left02;
-    right01.right = right02;
-
-    List<List<Integer>> result = new BinaryTreeLevelOrderTraversal2().levelOrderBottom(root);
+    TreeNode root = TreeNode.valueOf(3, 9, 20, null, null, 15, 7);
+    List<List<Integer>> result = new BinaryTreeLevelOrderTraversal2_107().levelOrderBottom(root);
     System.out.println(result);
-
   }
 
 }

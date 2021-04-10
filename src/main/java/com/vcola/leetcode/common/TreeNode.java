@@ -84,7 +84,7 @@ public class TreeNode {
     return Math.max(depth(node.left, depth + 1), depth(node.right, depth + 1));
   }
 
-  public static TreeNode valueOfLooselyArray(Integer[] vals) {
+  public static TreeNode valueOfLooselyArray(Integer... vals) {
     if (vals == null || vals.length == 0) {
       return null;
     }
@@ -142,8 +142,8 @@ public class TreeNode {
       return null;
     }
     TreeNode node = new TreeNode(vals[index]);
-    node.left = build(vals, 2 * (index + 1) - 1);
-    node.right = build(vals, 2 * (index + 1));
+    node.left = build(vals, 2 * index + 1);
+    node.right = build(vals, 2 * index + 2);
     return node;
   }
 

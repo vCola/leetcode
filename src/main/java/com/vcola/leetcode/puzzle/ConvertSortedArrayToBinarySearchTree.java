@@ -40,7 +40,7 @@ public class ConvertSortedArrayToBinarySearchTree {
   public static void main(String[] args) {
     int[] nums = { -10, -3, 0, 5, 9 };
     TreeNode root = new ConvertSortedArrayToBinarySearchTree().sortedArrayToBST(nums);
-    System.out.println(new BinaryTreeLevelOrderTraversal2().levelOrderBottom(root));
+    System.out.println(new BinaryTreeLevelOrderTraversal2_107().levelOrderBottom(root));
   }
 
 }

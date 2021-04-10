@@ -1,5 +1,7 @@
 package com.vcola.leetcode.puzzle;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
  * @author Very Cola
  * @date 2018年11月23日 下午4:32:04
  */
-public class FindAllNumbersDisappearedInAnArray {
+public class FindAllNumbersDisappearedInAnArray_448 {
 
   /*
    * 给定一个范围在  1 ≤ a[i] ≤ n ( n = 数组大小 ) 的 整型数组，数组中的元素一些出现了两次，另一些只出现一次。
@@ -19,6 +21,21 @@ public class FindAllNumbersDisappearedInAnArray {
    * output: [5,6]
    */
 
+  public List<Integer> findDisappearedNumbers(int[] nums) {
+    List<Integer> results = new ArrayList<>();
+    for (int num : nums) {
+      if (nums[Math.abs(num) - 1] > 0) {
+        nums[Math.abs(num) - 1] = -nums[Math.abs(num) - 1];
+      }
+    }
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] > 0) {
+        results.add(i + 1);
+      }
+    }
+    return results;
+  }
+
   // 不符合O(n)
   public List<Integer> findDisappearedNumbersV1(int[] nums) {
     List<Integer> result = new ArrayList<>();
@@ -26,11 +43,9 @@ public class FindAllNumbersDisappearedInAnArray {
     for (int i = 1; i <= length; i++) {
       result.add(i);
     }
-
     for (Integer num : nums) {
       result.remove(num);
     }
-
     return result;
   }
 
@@ -52,7 +67,7 @@ public class FindAllNumbersDisappearedInAnArray {
   }
 
   // O(n)
-  public List<Integer> findDisappearedNumbers(int[] nums) {
+  public List<Integer> findDisappearedNumbersV3(int[] nums) {
     List<Integer> result = new ArrayList<>();
     int length = nums.length;
     for (int i = 0; i < length; i++) {
@@ -74,7 +89,7 @@ public class FindAllNumbersDisappearedInAnArray {
 
   public static void main(String[] args) {
     int[] nums = { 4, 3, 2, 7, 8, 2, 3, 1 };
-    FindAllNumbersDisappearedInAnArray findAllNumbersDisappearedInAnArray = new FindAllNumbersDisappearedInAnArray();
+    FindAllNumbersDisappearedInAnArray_448 findAllNumbersDisappearedInAnArray = new FindAllNumbersDisappearedInAnArray_448();
     System.out.println(findAllNumbersDisappearedInAnArray.findDisappearedNumbers(nums));
   }
 
