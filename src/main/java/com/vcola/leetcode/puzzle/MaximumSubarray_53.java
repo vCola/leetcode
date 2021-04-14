@@ -6,12 +6,20 @@ package com.vcola.leetcode.puzzle;
  * @author Very Cola
  * @date 2018年5月29日 上午8:46:11
  */
-public class MaximumSubarray {
+public class MaximumSubarray_53 {
+
+  // 动态规划
+  public int maxSubArray(int[] nums) {
+    int pre = nums[0];
+
+
+    return 1;
+  }
 
   /**
-   * O(n)
+   * O(n) 贪心
    */
-  public int maxSubArray(int[] nums) {
+  public int maxSubArrayV1(int[] nums) {
     int result = Integer.MIN_VALUE;
     int temp = 0;
     for (int i = 0; i < nums.length; i++) {
