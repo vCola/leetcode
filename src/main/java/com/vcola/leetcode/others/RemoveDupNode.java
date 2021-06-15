@@ -4,11 +4,31 @@ import com.vcola.leetcode.common.ListNode;
 
 public class RemoveDupNode {
 
-  public static ListNode removeDup(ListNode head) {
+  public static ListNode deleteDuplicates(ListNode head) {
     if (head == null || head.next == null) {
       return head;
     }
-    ListNode dummy = new ListNode();
+    ListNode root = new ListNode(-1);
+    root.next = head;
+    ListNode cur = root;
+    while (cur.next != null && cur.next.next != null) {
+      if (cur.next.val == cur.next.next.val) {
+        int tmp = cur.next.val;
+        while (cur.next != null && tmp == cur.next.val) {
+          cur.next = cur.next.next;
+        }
+      } else {
+        cur = cur.next;
+      }
+    }
+    return root.next;
+  }
+
+  public static ListNode removeDuplicates(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+    ListNode dummy = new ListNode(0);
     ListNode prePre = dummy;
     ListNode cur = head, next;
     boolean dup = false;
@@ -32,9 +52,8 @@ public class RemoveDupNode {
   }
 
   public static void main(String[] args) {
-    ListNode listNode = ListNode.of(0, 0, 1, 4, 4, 5, 6, 7, 7, 7, 9);
-    ListNode result = removeDup(listNode);
+    ListNode listNode = ListNode.of(1, 1, 0);
+    ListNode result = removeDuplicates(listNode);
     System.out.println(result);
   }
-
 }
