@@ -2,7 +2,7 @@ package com.vcola.leetcode.others;
 
 import com.vcola.leetcode.common.ListNode;
 
-public class ReverseNoneAllListNode {
+public class ReversePartialListNode {
 
   public ListNode revere(ListNode head, int m) {
     ListNode slow = head;
@@ -27,7 +27,7 @@ public class ReverseNoneAllListNode {
 
   public static void main(String[] args) {
     ListNode head = ListNode.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-    ListNode node = new ReverseNoneAllListNode().revere(head, 5);
+    ListNode node = new ReversePartialListNode().revere(head, 5);
     System.out.println(node);
   }
 
