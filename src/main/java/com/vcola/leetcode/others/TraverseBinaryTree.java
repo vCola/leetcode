@@ -3,6 +3,7 @@ package com.vcola.leetcode.others;
 import com.vcola.leetcode.common.TreeNode;
 
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class TraverseBinaryTree {
@@ -12,10 +13,10 @@ public class TraverseBinaryTree {
       return;
     }
     // FIFO
-    LinkedList<TreeNode> queue = new LinkedList<>();
-    queue.add(root);
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
     while (!queue.isEmpty()) {
-      TreeNode node = queue.pop();
+      TreeNode node = queue.poll();
       System.out.print(node.val + " ");
       if (node.left != null) {
         queue.add(node.left);
@@ -37,19 +38,19 @@ public class TraverseBinaryTree {
 
   public void preOrderTraverseWithStack(TreeNode node) {
     Stack<TreeNode> stack = new Stack<>();
-    TreeNode treeNode = node;
-    while (treeNode != null || !stack.isEmpty()) {
+    TreeNode curNode = node;
+    while (curNode != null || !stack.isEmpty()) {
       // 一直遍历到不存在左子节点
-      while (treeNode != null) {
+      while (curNode != null) {
         // 打印
-        System.out.print(treeNode.val + " ");
-        stack.push(treeNode);
-        treeNode = treeNode.left;
+        System.out.print(curNode.val + " ");
+        stack.push(curNode);
+        curNode = curNode.left;
       }
       // 已经不存在左子节点, 弹出后判断右子节点
       if (!stack.isEmpty()) {
-        treeNode = stack.pop();
-        treeNode = treeNode.right;
+        curNode = stack.pop();
+        curNode = curNode.right;
       }
     }
   }
@@ -65,16 +66,18 @@ public class TraverseBinaryTree {
 
   public void inOrderTraverseWithStack(TreeNode node) {
     Stack<TreeNode> stack = new Stack<>();
-    TreeNode treeNode = node;
-    while (treeNode != null || !stack.isEmpty()) {
-      while (treeNode != null) {
-        stack.push(treeNode);
-        treeNode = treeNode.left;
+    TreeNode curNode = node;
+    while (curNode != null || !stack.isEmpty()) {
+      // 直接干到当前节点最左
+      while (curNode != null) {
+        stack.push(curNode);
+        curNode = curNode.left;
       }
+      // 走到这一步， 说明stack中第一个元素 已经没有左子树
       if (!stack.isEmpty()) {
-        treeNode = stack.pop();
-        System.out.print(treeNode.val + " ");
-        treeNode = treeNode.right;
+        curNode = stack.pop();
+        System.out.print(curNode.val + " ");
+        curNode = curNode.right;
       }
     }
   }
@@ -88,25 +91,27 @@ public class TraverseBinaryTree {
     System.out.print(node.val + " ");
   }
 
+  // 后序遍历
   public void postOrderTraverseWithStack(TreeNode node) {
     Stack<TreeNode> stack = new Stack<>();
-    TreeNode treeNode = node;
+    TreeNode curNode = node;
     TreeNode lastVisit = null;
 
-    while (treeNode != null || !stack.isEmpty()) {
-      while (treeNode != null) {
-        stack.push(treeNode);
-        treeNode = treeNode.left;
+    while (curNode != null || !stack.isEmpty()) {
+      while (curNode != null) {
+        stack.push(curNode);
+        curNode = curNode.left;
       }
       if (!stack.isEmpty()) {
-        treeNode = stack.pop();
-        if (treeNode.right == null || treeNode.right == lastVisit) {
-          System.out.print(treeNode.val + " ");
-          lastVisit = treeNode;
-          treeNode = null;
+        curNode = stack.pop();
+        // 当前节点没有右子树 或者 右子树已经遍历过
+        if (curNode.right == null || curNode.right == lastVisit) {
+          System.out.print(curNode.val + " ");
+          lastVisit = curNode;
+          curNode = null;
         } else {
-          stack.push(treeNode);
-          treeNode = treeNode.right;
+          stack.push(curNode);
+          curNode = curNode.right;
         }
       }
     }

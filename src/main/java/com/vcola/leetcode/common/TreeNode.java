@@ -147,6 +147,11 @@ public class TreeNode {
     return node;
   }
 
+  @Override
+  public String toString() {
+    return "val =" + val;
+  }
+
   public static void main(String[] args) {
     TreeNode treeNode = valueOf(1, 3, 5, null, 8, null, null, null, null, 9, null, null, null, null, null);
     System.out.println(depth(treeNode));
